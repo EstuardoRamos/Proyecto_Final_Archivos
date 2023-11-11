@@ -1,0 +1,11 @@
+/* Ajusta la altura máxima del editor a 500 píxeles */
+.NgxEditor__Wrapper {
+    max-height: 500px;
+    overflow-y: auto; /* Agrega una barra de desplazamiento vertical si el contenido supera la altura máxima */
+  }
+  
+  /* O bien, puedes establecer una altura fija en píxeles */
+  .NgxEditor__Wrapper {
+    height: 600px; /* 600 píxeles de altura */
+  }
+  

@@ -1,0 +1,6 @@
+.double-clicked {
+    background-color: yellow; /* Cambia el color de fondo a amarillo */
+    color: black; /* Cambia el color de texto a negro */
+    border: 2px solid black; /* Agrega un borde negro */
+  }
+  

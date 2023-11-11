@@ -1,0 +1,28 @@
+<mat-drawer-container class="container">
+    <mat-drawer mode="side" opened>
+        <mat-list>
+            <h1>Compartidos</h1>
+            <div matLine>
+                <mat-list-item *ngFor="let document of documentos">
+                    <mat-icon matListItemIcon>description</mat-icon>
+                    <h3 matListItemTitle>{{document.nombre}}{{document.tipo}}</h3>
+                    <p matListItemLine>
+                        <span>Autor:</span>
+                        <span class="demo-2"> -- {{document.creador}}</span>
+                        <span class="example-spacer"></span>
+                        <button mat-button (click)="Ver(document)">Ver</button>
+                        <button mat-button (click)="eliminar(document)" color="warn">Eliminar</button>
+                    </p>
+                </mat-list-item>
+            </div>
+        </mat-list>
+    </mat-drawer>
+
+    <mat-drawer-content  class="content" >
+        <!-- Tu contenido aquí -->
+        
+            
+        
+    </mat-drawer-content>
+    
+</mat-drawer-container>

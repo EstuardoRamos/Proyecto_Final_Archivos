@@ -1,0 +1,8 @@
+<h1>{{documento.nombre}}{{documento.tipo}}</h1>
+<div class="NgxEditor__Wrapper">
+    <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
+    <ngx-editor [editor]="editor" [(ngModel)]="html" [placeholder]="'Type here...'"></ngx-editor>
+</div>
+<div>
+    <button mat-raised-button color="primary" (click)="regresar()">Regresar</button>
+</div>p>

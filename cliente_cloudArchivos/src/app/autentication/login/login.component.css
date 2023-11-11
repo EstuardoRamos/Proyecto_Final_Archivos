@@ -1,0 +1,19 @@
+.mat-form-field {
+    width: 100%;
+    margin-bottom: 15px; /* Espacio entre los campos */
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 33vh; /* La tercera parte de la altura de la pantalla */
+  }
+  
+  .login-card {
+    width: 300px; /* Ancho del cuadro del formulario */
+  }

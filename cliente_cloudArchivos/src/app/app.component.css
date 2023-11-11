@@ -1,0 +1,10 @@
+.contenedor {
+    display: flex;
+  }
+  
+  /* Estilos adicionales para los elementos secundarios si es necesario */
+  .contenedor > div {
+    /* Estilos para los elementos secundarios */
+  }
+
+  

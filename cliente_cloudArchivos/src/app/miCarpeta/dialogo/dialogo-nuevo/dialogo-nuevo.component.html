@@ -1,0 +1,17 @@
+<div>
+    <h1 mat-dialog-title>Nueva carpeta</h1>
+    <div mat-dialog-content>
+        <div style="display: flex;flex-direction: column; margin:1rem auto; max-width: 600px; padding: 1rem;">
+
+            <mat-form-field>
+                <mat-label>Nombre de la carpeta:</mat-label>
+                <input matInput [(ngModel)]="nombre" type="txt" placeholder="Ingrese nombre">
+            </mat-form-field>
+
+        </div>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button (click)="cancelar()">Cancelar</button>
+        <button mat-button (click)="crear()" cdkFocusInitial>Confirmar</button>
+    </div>
+</div>

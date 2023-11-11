@@ -1,0 +1,42 @@
+<mat-drawer-container>
+    <mat-toolbar>
+
+        <button mat-button (click)="crearNuevoDoc()" >
+            <mat-icon>description</mat-icon>
+            <span>Nuevo documento</span>
+        </button>
+        <button mat-button (click)="abrirDialogo()" >
+            <mat-icon>folder</mat-icon>
+            <span>Nueva Carpeta</span>
+        </button>
+        <span class="example-spacer"></span>
+        <div *ngIf="portapales">
+            <button  mat-button (click)="pegar()"  >
+                <span>Pegar</span>
+            </button>
+            <button (click)="portapales=false">Calcelar</button>
+        </div>
+        <div *ngIf="portapalesC">
+            <button  mat-button (click)="pegarCarpeta()"  >
+                <span>Pegar </span>
+            </button>
+    
+            <button (click)="portapales=false">Calcelar</button>
+
+        </div>
+        
+        
+
+    </mat-toolbar>
+    <button mat-button color="priymary" (click)="regresar(carpeta)">Regresar</button>
+    <app-carpeta *ngFor="let carpeta of carpetas" [carpeta]="carpeta" 
+    (carpetaActual)="onDoubleClick($event)"
+    (carpetaMover)="moverCarpeta($event)"
+    ></app-carpeta>
+    <app-documento *ngFor="let documento1 of documentos" [documento]="documento1"
+    (DocumentoActual)="mover($event)"
+    >
+    </app-documento>
+    
+
+</mat-drawer-container>

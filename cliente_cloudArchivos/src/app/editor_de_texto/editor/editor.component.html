@@ -1,0 +1,24 @@
+<mat-toolbar>
+  <mat-form-field>
+    <input matInput [(ngModel)]="documento.nombre" placeholder="Nombre del documento">
+  </mat-form-field>
+  <span class="example-spacer"></span>
+  <mat-form-field class="type-select">
+    <mat-label>Tipo de archivo</mat-label>
+    <mat-select [(ngModel)]="documento.tipo">
+      <mat-option value=".txt">.txt</mat-option>
+      <mat-option value=".html">.html</mat-option>
+    </mat-select>
+  </mat-form-field>
+</mat-toolbar>
+
+<div class="editor-container">
+  <div class="NgxEditor__Wrapper">
+    <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
+    <ngx-editor [editor]="editor" [(ngModel)]="html" [placeholder]="'Type here...'"></ngx-editor>
+  </div>
+  <div>
+    <button *ngIf="edit" mat-raised-button color="primary" (click)="crear()">Crear</button>
+    <button *ngIf="!edit" mat-raised-button color="primary" (click)="guardar()">Guardar</button>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+.NgxEditor__Wrapper {
+    max-height: 200px;
+    max-width: 800px;
+    overflow-y: auto; /* Agrega una barra de desplazamiento vertical si el contenido supera la altura máxima */
+  }
+  
+  /* O bien, puedes establecer una altura fija en píxeles */
+  .NgxEditor__Wrapper {
+    height: 600px; /* 600 píxeles de altura */
+  }
