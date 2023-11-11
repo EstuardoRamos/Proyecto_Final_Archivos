@@ -9,11 +9,13 @@ import { PrincipalComponent } from './administrador/principal/principal.componen
 import { TreeFlatOverviewExample } from './tree-prueba/TreeFlatOverviewExample ';
 import { ListadoCompartidosComponent } from './compartido/listado-compartidos/listado-compartidos.component';
 import { VisorComponent } from './compartido/visor/visor.component';
+import { RegistroComponent } from './autentication/registro/registro.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
   { path: 'tree', component: TreeFlatOverviewExample },
+  { path: 'regis', component: RegistroComponent },
   {
     path: 'empleado',
         component: BarraEmpleadoComponent,

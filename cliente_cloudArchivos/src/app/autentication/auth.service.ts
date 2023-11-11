@@ -12,7 +12,9 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   signup(user: User) {
-    return this.http.post(`${this.baseUrl}/users/create`, user);
+    console.log(" a guardar ")
+    console.log(user)
+    return this.http.post(`${this.baseUrl}/api/new-user`, user);
   }
 
   login(username: string, password: string) {
