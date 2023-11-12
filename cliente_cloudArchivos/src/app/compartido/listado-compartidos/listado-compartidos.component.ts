@@ -4,6 +4,7 @@ import Documento from 'src/app/miCarpeta/interfaces/documento.interface';
 import { DocumentoService } from 'src/app/miCarpeta/services/documents.servise';
 import { Editor } from 'ngx-editor';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-listado-compartidos',
@@ -56,14 +57,40 @@ export class ListadoCompartidosComponent {
     this.router.navigate([ruta, { doc: JSON.stringify(doc)}]);
   }
 
-  eliminar(document: Documento){
-    if(confirm(`¿Está seguro que desea eliminar ${document.nombre}?`)){
+  
+
+// ...
+
+eliminar(document: Documento) {
+  Swal.fire({
+    icon: 'warning',
+    title: `¿Está seguro que desea eliminar ${document.nombre}?`,
+    showCancelButton: true,
+    confirmButtonText: 'Sí, eliminar',
+    cancelButtonText: 'Cancelar',
+  }).then((result) => {
+    if (result.isConfirmed) {
       this.documentoService.deleteDocCompartido(document)
-      .subscribe((data)=>{
-        alert("Se ha eliminado el documento");
-        location.reload();
-        },error=>alert("No se pudo eliminar"));
+        .subscribe(
+          (data) => {
+            Swal.fire({
+              icon: 'success',
+              title: 'Documento eliminado',
+              text: 'Se ha eliminado el documento exitosamente.',
+            });
+            location.reload();
+          },
+          (error) => {
+            Swal.fire({
+              icon: 'error',
+              title: 'Error al eliminar',
+              text: 'No se pudo eliminar el documento.',
+            });
+          }
+        );
     }
-  }
+  });
+}
+
 
 }

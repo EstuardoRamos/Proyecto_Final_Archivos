@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import Documento from 'src/app/miCarpeta/interfaces/documento.interface';
 import { GlobalsService } from 'src/app/globals/globals.service';
 import { DocumentoService } from 'src/app/miCarpeta/services/documents.servise';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-editor',
@@ -42,8 +43,12 @@ export class EditorComponent implements OnInit, OnDestroy {
         .updateDocument(this.globalService.getUser().username, this.documento)
         .subscribe(
           (response) => {
-            alert('Se ha actualizado el documento correctamente');
-            this.ngOnDestroy();
+             Swal.fire({
+              icon: 'success',
+              title: 'Documento actualizado ${documento.nombre}',
+              text: 'Se ha actualizado el documento exitosamente.',
+            });
+            
           },
           (error) => {}
         );
@@ -57,13 +62,14 @@ export class EditorComponent implements OnInit, OnDestroy {
       this.documento.raiz = this.raiz;
       this._documentService.crearDoc(this.documento).subscribe(
         (response) => {
-          alert('Se ha creado el documento correctamente');
-          //this.edit = true;
-          //window.location.reload();
-          //this.ngOnDestroy();
+          Swal.fire({
+            icon: 'success',
+            title: 'Documento  ${documento.nombre} creado',
+            text: 'Se ha creado el documento exitosamente.',
+          });
         },
         (error) => {
-          console.error('Error al registrar usuario', error);
+          console.error('Error al registrar documento', error);
           // Maneja el error de registro de usuario, muestra un mensaje de error, etc.
         }
       );
