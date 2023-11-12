@@ -47,26 +47,31 @@ const crearUsuario = (req, res) => {
     });
 };
 
+
+
 const login = async (req, res) => {
-  //const params = req.body;
-  const { username, password } = req.body;
-  const user = await User.findOne({ username });
+  try {
+    const { username, password } = req.body;
+    const user = await User.findOne({ username });
 
-  if (!user) {
-    throw new Error("El usuario o la contraseña no existe");
-  }
+    if (!user) {
+      return res.status(401).json({ error: "El usuario o la contraseña no existe" });
+    }
 
-  //const isCorrectCredentials = await bcrypt.compare(password, user.password);
-  //console.log(password, user.password);
-  if (password===user.password) {
-    console.log("correcto-------")
-    const usuarioJson = JSON.stringify(user);
+    //const isCorrectCredentials = await bcrypt.compare(password, user.password);
 
-    return res.status(201).json(user);
-  } else {
-    throw new Error("El usuario o la contraseña son incorrectas");
+    if (password===user.password) {
+      // No es necesario convertir a JSON, puedes enviar directamente el objeto del usuario
+      return res.status(200).json(user);
+    } else {
+      return res.status(401).json({ error: "El usuario o la contraseña son incorrectas" });
+    }
+  } catch (error) {
+    console.error('Error en la autenticación:', error);
+    return res.status(500).json({ error: "Error en la autenticación" });
   }
 };
+
 
 const actualizarUsuario = async (req, res) => {
   const userId = req.params.id;

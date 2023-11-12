@@ -26,6 +26,10 @@ export class DocumentoService {
     return this.http.get(`${this.baseUrl}/api/listar-compartido/${creador}` );
   }
 
+  listarDocsEliminados(creador:string) {
+    return this.http.get(`${this.baseUrl}/api/listarDoc-eliminados/${creador}` );
+  }
+
 
   updateDocument( creador:string, doc: Documento ){
     return this.http.put(`${this.baseUrl}/api/updateDoc/${doc.nombre}/${creador}/${doc.raiz}`, doc );

@@ -3,7 +3,7 @@ const { login, crearUsuario, actualizarUsuario, listarUsers } = require('../cont
 
 const router = Router();
 
-router.post('/new', crearUsuario)
+router.post('/new-user', crearUsuario)
 
 router.post('/login', login)
 router.put('/users/:id', actualizarUsuario);

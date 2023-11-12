@@ -1,42 +1,121 @@
 <mat-drawer-container>
     <mat-toolbar>
 
-        <button mat-button (click)="crearNuevoDoc()" >
+        <button mat-button (click)="crearNuevoDoc()">
             <mat-icon>description</mat-icon>
             <span>Nuevo documento</span>
         </button>
-        <button mat-button (click)="abrirDialogo()" >
+        <button mat-button (click)="abrirDialogo()">
             <mat-icon>folder</mat-icon>
             <span>Nueva Carpeta</span>
         </button>
         <span class="example-spacer"></span>
         <div *ngIf="portapales">
-            <button  mat-button (click)="pegar()"  >
+            <button mat-button (click)="pegar()">
                 <span>Pegar</span>
             </button>
             <button (click)="portapales=false">Calcelar</button>
         </div>
         <div *ngIf="portapalesC">
-            <button  mat-button (click)="pegarCarpeta()"  >
+            <button mat-button (click)="pegarCarpeta()">
                 <span>Pegar </span>
             </button>
-    
+
             <button (click)="portapales=false">Calcelar</button>
 
         </div>
-        
-        
+
+
 
     </mat-toolbar>
-    <button mat-button color="priymary" (click)="regresar(carpeta)">Regresar</button>
-    <app-carpeta *ngFor="let carpeta of carpetas" [carpeta]="carpeta" 
-    (carpetaActual)="onDoubleClick($event)"
-    (carpetaMover)="moverCarpeta($event)"
-    ></app-carpeta>
-    <app-documento *ngFor="let documento1 of documentos" [documento]="documento1"
-    (DocumentoActual)="mover($event)"
-    >
-    </app-documento>
+    <button mat-button color="priymary" (click)="regresar()">Regresar</button>
+
+  <!--<div *ngFor="let carpeta of carpetas" >
+    <app-carpeta [carpeta]="carpeta" (carpetaActual)="onDoubleClick($event)"
+        (carpetaMover)="moverCarpeta($event)"></app-carpeta>
+
+  </div>-->
+
+  
+<!--
     
+    app.component.html -->
+
+<!--<table>
+    <thead>
+      <tr>
+        <th>Tipo</th>
+        <th>Nombre</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let carpeta of carpetas">
+        <td>Carpeta</td>
+        <td>{{ carpeta.nombre }}</td>
+        <td>
+          <button (click)="onDoubleClick(carpeta)">Doble clic</button>
+          <button (click)="moverCarpeta(carpeta)">Mover</button>
+          <button >Eliminar</button>
+        </td>
+      </tr>
+      <tr *ngFor="let documento1 of documentos">
+        <td>Documento</td>
+        <td>{{ documento1.nombre }}</td>
+        <td>
+          <button >Mover</button>
+          <button >Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <table class="table table-dark">
+    <thead>
+      <tr >
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let documento1 of documentos">
+        <th scope="row">{{documento1.nombre}}</th>
+        <td>{{documento1.tipo}}</td>
+        <td>{{documento1.creador}}</td>
+        <td>{{documento1.nombre}}</td>
+      </tr>
+    </tbody>
+  </table>-->
+  
+ 
+
 
 </mat-drawer-container>
+<div fxLayout="row wrap"
+     fxLayout.xs="column"
+     fxLayoutAlign="start"
+     fxLayoutGap="20px">
+     <div fxFlex="20"
+         fxFlex.lg="15"
+         fxFlex.sm="30"
+         *ngFor="let carpeta of carpetas">
+         <app-carpeta [carpeta]="carpeta" (carpetaActual)="onDoubleClick($event)"
+        (carpetaMover)="moverCarpeta($event)"></app-carpeta>  
+    </div >
+
+    <div fxFlex="20"
+         fxFlex.lg="15"
+         fxFlex.sm="30"
+         *ngFor="let documento1 of documentos">
+         <app-documento  [documento]="documento1" (DocumentoActual)="mover($event)">
+        </app-documento>
+    
+    </div >
+
+    
+    
+
+</div>

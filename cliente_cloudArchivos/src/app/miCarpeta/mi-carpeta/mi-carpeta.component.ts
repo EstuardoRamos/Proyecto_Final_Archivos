@@ -25,6 +25,7 @@ export class MiCarpetaComponent {
   carpeta:Carpeta;
   carpetaTmp:Carpeta;
   carpetaAnterior:Carpeta;
+  carpetaActual:Carpeta;
   raiz:string; 
   creador:string;
   portapales:boolean=false;
@@ -105,7 +106,7 @@ export class MiCarpetaComponent {
       this.raiz=this.carpeta.nombre
       
     }else{
-      console.log("acpeta raiz")
+      //console.log("acpeta raiz")
       
       this.raiz=this.globalsService.getUser().username;
     }
@@ -113,16 +114,34 @@ export class MiCarpetaComponent {
     this.listarDocs(this.raiz, this.globalsService.getUser().username);
     this.listarCarpetas(this.raiz, this.globalsService.getUser().username);
   }
-  regresar(carpeta: Carpeta){
-    this.raiz=carpeta.raiz;
+  regresar(){
+    /*console.log(" Carpeta actual "+this.carpeta.nombre)
+    console.log("Regresando a "+this.carpeta.raiz)
+    console.log("Raiz actual "+this.raiz)
+    this.raiz=this.carpeta.raiz;
+    if(this.raiz===this.carpeta.nombre){
+       this.raiz=this.globalsService.getUser().username;
+    }else{
+      
+    }
+    
     this.listarDocs(this.raiz, this.globalsService.getUser().username);
     this.listarCarpetas(this.raiz, this.globalsService.getUser().username);
-    this.carpeta=this.carpetaAnterior
+    this.carpeta=this.carpetaAnterior;
+    console.log("Carpeta actual "+this.carpeta.raiz)*/
+    if (this.carpeta.raiz===this.globalsService.getUser().username) {
+      this.listarCarpetas(this.carpeta.raiz,this.globalsService.getUser().username );
+      this.listarDocs(this.carpeta.raiz,this.globalsService.getUser().username );
+      
+    }else{
+      this.obtnenerPadre(this.carpeta.raiz);
+    }
+    
+    
   }
 
   
   abrirDialogo() {
-    //console.log("Estamos en lal carpeta: "+this.carpeta.nombre)
     let raiz;
     if(this.carpeta){
       raiz= this.carpeta.nombre;
@@ -139,26 +158,14 @@ export class MiCarpetaComponent {
     });
 
     dialogo1.afterClosed().subscribe(art => {
-      this.router.navigate(['/empleado']);
+      this.router.navigate([this.globalsService.getTipoUser() ]);
     });
   }
-  abrirDialogoC() {
-    const dialogo = this.dialog.open(SelectCarpetaComponent, {
-      data: {
-        //documento: this.documento,
-        carpeta: this.carpeta
-      }
-      
-    });
-
-    dialogo.afterClosed().subscribe(art => {
-      this.router.navigate(['/empleado']);
-    });
-  }
+  
 
   
 
-  crearNuevoDoc(){
+    crearNuevoDoc(){
     let document:Documento= this.nuevoDocumento;
     let raiz;
     if(this.carpeta){
@@ -167,11 +174,11 @@ export class MiCarpetaComponent {
       //aqui debo obtener el username
       raiz=this.globalsService.getUser().username;
     }
-    this.router.navigate(['/empleado/edit/',{ document: JSON.stringify(document), edit:false, raiz }]);
+    const ruta: string=this.globalsService.getTipoUser()+'/edit'
+    this.router.navigate([ruta,{ document: JSON.stringify(document), edit:false, raiz }]);
   }
 
   listarDocs (raiz: string, creador:string){
-    console.log("nada");
     if (!raiz || !creador) {
       // Realiza alguna validación de los campos de inicio de sesión
       return;
@@ -181,7 +188,7 @@ export class MiCarpetaComponent {
       next: (response: Object) => {
         this.documentos = response as Documento[];
         this.documentos.forEach(element => {
-          console.log(element.nombre, element.raiz);
+          //console.log(element.nombre, element.raiz);
         });
         
       },
@@ -194,7 +201,6 @@ export class MiCarpetaComponent {
   }
 
   listarCarpetas (raiz: string, creador:string){
-    console.log("nada");
     if (!raiz || !creador) {
       // Realiza alguna validación de los campos de inicio de sesión
       return;
@@ -204,7 +210,7 @@ export class MiCarpetaComponent {
       next: (response: Object) => {
         this.carpetas = response as Carpeta[];
         this.carpetas.forEach(element => {
-          console.log(element.nombre, element.raiz);
+          //console.log(element.nombre, element.raiz);
           this.carpetaAnterior=element;
         });   
         
@@ -218,11 +224,28 @@ export class MiCarpetaComponent {
   }
 
   refreshPage() {
-    this.router.navigateByUrl('/empleado/mi-carpeta', { skipLocationChange: true }).then(() => {
-      this.router.navigate(['/empleado/mi-carpeta']);
+    const ruta: string=this.globalsService.getTipoUser()+'/mi-carpeta'
+    this.router.navigateByUrl(ruta, { skipLocationChange: true }).then(() => {
+      this.router.navigate([ruta]);
     });
   }
+  obtnenerPadre(nombre: string){
+    this._carpetaService.obtenerCarpeta(nombre, this.globalsService.getUser().username)
+    .subscribe({
+      next: (response: any) =>{
+        this.carpetaActual=response as Carpeta;
+        console.log("Obtenemos la carpeta")
+        console.log(this.carpetaActual);
+        console.log("obtubimoos qui"+this.carpetaActual.nombre);
+        this.listarDocs(this.carpetaActual.nombre, this.globalsService.getUser().username);
+        this.listarCarpetas(this.carpetaActual.nombre , this.globalsService.getUser().username);
+        this.carpeta=this.carpetaActual;
+        console.log("hacemos el cambie de "+this.carpeta.nombre+" a  "+this.carpetaActual.nombre );
+      }
+    })
 
+    
+  }
 
 }
 

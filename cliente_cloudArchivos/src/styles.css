@@ -14,5 +14,8 @@ html, body {
  }
 
 
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #252323; /* Color de fondo gris */}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #232121; /* Color de fondo gris */}
 @import "primeicons/primeicons.css";
+/* styles.css o styles.scss */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+

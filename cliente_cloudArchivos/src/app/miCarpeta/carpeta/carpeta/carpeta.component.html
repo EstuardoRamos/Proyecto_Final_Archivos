@@ -1,6 +1,5 @@
-<mat-grid-list cols="7" rowHeight="100px">
-    <mat-grid-tile>
-        <mat-card [style.width]="'200px'" (dblclick)="onDoubleClick(carpeta)">
+     
+       <mat-card [style.width]="'200px'" (dblclick)="onDoubleClick(carpeta)">
             <mat-card-content>
                 <mat-list>
                     <mat-list-item>
@@ -17,5 +16,16 @@
                 </mat-list>
             </mat-card-content>
         </mat-card>
-    </mat-grid-tile>
-</mat-grid-list>
+
+<!--
+    <td><mat-icon mat-list-icon>folder</mat-icon></td>
+    <td>{{carpeta.nombre}}</td>
+    <td>{{carpeta.creador}}</td>
+    <td>
+        <button class="btn btn-primary" (click)="onDoubleClick(carpeta)">Abrir</button>
+        <button class="btn btn-warning" (click)="mover(carpeta)">Mover</button>
+        <button class="btn btn-danger" (click)="borrar(carpeta)">Eliminar</button>
+    </td>
+
+-->
+    

@@ -1,0 +1,27 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Tipo</th>
+            <th>Nombre</th>
+            <th>Autor</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let carpeta of carpetas">
+            <td class="table-dark"><mat-icon>folder</mat-icon></td>
+            <td class="table-dark">{{ carpeta.nombre }}</td>
+            <td class="table-dark">{{carpeta.creador}}
+            </td>
+            <td class="table-dark"><button type="button" class="btn btn-info btn-sm" >Abrir</button>
+            </td>
+        </tr>
+        <tr *ngFor="let documento1 of documentos">
+            <td class="table-dark"><mat-icon>description</mat-icon></td>
+            <td class="table-dark">{{ documento1.nombre }}</td>
+            <td class="table-dark">{{documento1.creador}}
+            </td>
+            <td class="table-dark"><button type="button" class="btn btn-info btn-sm" (click)="Ver(documento1)">Ver</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

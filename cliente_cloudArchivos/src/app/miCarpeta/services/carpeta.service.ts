@@ -9,9 +9,19 @@ export class CarpetaService {
   constructor(private http: HttpClient) { }
 
   listarCarpetas(raiz: string, creador:string) {
-    console.log("servie excute")
     console.log(`${this.baseUrl}/api/listar-carpeta/${raiz}/${creador}`)
     return this.http.get(`${this.baseUrl}/api/listar-carpeta/${raiz}/${creador}` );
+  }
+
+  listarCarpetasEliminadas( creador:string) {
+    console.log("servie excute")
+    console.log(`${this.baseUrl}/api/listar-carpeta-eliminadas/${creador}`)
+    return this.http.get(`${this.baseUrl}/api/listar-carpeta-eliminadas/${creador}` );
+  }
+
+  obtenerCarpeta(raiz: string, creador:string) {
+    console.log(`${this.baseUrl}/api/obtener-carpeta/${raiz}/${creador}`)
+    return this.http.get(`${this.baseUrl}/api/obtener-carpeta/${raiz}/${creador}` );
   }
 
   crearCarpeta(carpeta: Carpeta) {

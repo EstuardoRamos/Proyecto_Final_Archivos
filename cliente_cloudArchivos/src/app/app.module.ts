@@ -26,6 +26,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatTreeModule} from '@angular/material/tree';
 
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 
 //import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -47,6 +49,7 @@ import { ListadoCompartidosComponent } from './compartido/listado-compartidos/li
 import { ListadoUsersComponent } from './compartido/listado-users/listado-users.component';
 import { VisorComponent } from './compartido/visor/visor.component';
 import { DialogoCompartirComponent } from './miCarpeta/dialogo/dialogo-compartir/dialogo-compartir.component';
+import { PapeleraComponent } from './papalera/papelera/papelera.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +70,8 @@ import { DialogoCompartirComponent } from './miCarpeta/dialogo/dialogo-compartir
     ListadoCompartidosComponent,
     ListadoUsersComponent,
     VisorComponent,
-    DialogoCompartirComponent
+    DialogoCompartirComponent,
+    PapeleraComponent
   ],
   imports: [
     FormsModule,
@@ -90,6 +94,7 @@ import { DialogoCompartirComponent } from './miCarpeta/dialogo/dialogo-compartir
     MatDialogModule,
     MatTreeModule,
 
+    FlexLayoutModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule

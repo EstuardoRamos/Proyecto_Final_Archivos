@@ -62,6 +62,21 @@ const listarCarpetas = async (req, res) => {
     return res.status(201).json(carpeta);
 };
 
+const obtnenerCarpeta = async (req, res) => {
+  const nombre = req.params.nombre; 
+  const creador = req.params.creador;
+  const deleted= false;
+  const carpeta = await Carpeta.findOne({ nombre, creador });
+
+  if (!carpeta) {
+    throw new Error("El Archivo no existente");
+  }
+  console.log("correcto-------")
+    const caroetaJson = JSON.stringify(carpeta);
+    console.log(caroetaJson);
+    return res.status(201).json(carpeta);
+};
+
 
 const actualizarCarpetas = async (req, res) => {
   const nombreDoc = req.params.nombre;
@@ -134,10 +149,25 @@ const deletedCarpeta = async (req, res) => {
   }
 };
 
+const listarCarpetasBorradas = async (req, res) => {
+  //const raiz = req.params.raiz; //cambiar al eliminar la raiz a papelera
+  const deleted= true;
+  const carpeta = await Carpeta.find({ deleted });
+
+  if (!carpeta) {
+    throw new Error("El Archivo no existente");
+  }
+  console.log("correcto-------")
+    const caroetaJson = JSON.stringify(carpeta);
+    console.log(caroetaJson);
+    return res.status(201).json(carpeta);
+};
 
 module.exports = {
   listarCarpetas, 
   actualizarCarpetas,
   crearCarpeta,
   deletedCarpeta,
+  obtnenerCarpeta,
+  listarCarpetasBorradas
 };

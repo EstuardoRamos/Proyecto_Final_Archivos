@@ -52,7 +52,8 @@ export class ListadoCompartidosComponent {
 
   Ver(doc: Documento){
     console.log(doc.nombre)
-    this.router.navigate(['/empleado/visor', { doc: JSON.stringify(doc)}]);
+    const ruta: string=this.globalService.getTipoUser()+'/visor'
+    this.router.navigate([ruta, { doc: JSON.stringify(doc)}]);
   }
 
   eliminar(document: Documento){

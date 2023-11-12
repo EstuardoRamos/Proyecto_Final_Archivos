@@ -62,6 +62,21 @@ const listarDocs = async (req, res) => {
     return res.status(201).json(document);
 };
 
+const listarDocsEliminados = async (req, res) => {
+  //const raiz = req.params.raiz; 
+  //const creador = req.params.creador;
+  const deleted= true;
+  const document = await Document.find({ deleted });
+
+  if (!document) {
+    throw new Error("El Archivo no existente");
+  }
+  console.log("correcto-------")
+    const documentJson = JSON.stringify(document);
+    console.log(documentJson);
+    return res.status(201).json(document);
+};
+
 
 const actualizarDoc = async (req, res) => {
   const nombreDoc = req.params.nombre; 
@@ -142,10 +157,7 @@ const deletedDocCarpeta = async (req, res) => {
     );
 
     if (result.n === 0) {
-      return res.status(404).json({
-        status: 'error',
-        message: 'Documentos no encontrados',
-      });
+      return res.status(404).jslistarDocsEliminados
     }
 
     return res.status(200).json({
@@ -163,10 +175,12 @@ const deletedDocCarpeta = async (req, res) => {
 
 
 
+
 module.exports = {
   listarDocs, 
   actualizarDoc,
   crearDocument,
   deletedDoc,
-  deletedDocCarpeta
+  deletedDocCarpeta,
+  listarDocsEliminados
 };

@@ -1,5 +1,5 @@
-<mat-grid-list cols="7" rowHeight="100px">
-    <mat-grid-tile>
+
+
         <mat-card [style.width]="'200px'" (dblclick)="onDoubleClick(documento)">
             <mat-card-content>
                 <mat-list>
@@ -10,14 +10,14 @@
                     <div>
                         <button (click)="mover(documento)">Mover</button>
                         <button (click)="borrar(documento)">Eliminar</button>
-                        <button mat-icon-button (click)="abrirDialogoShare(documento)" >
+                        <button mat-icon-button (click)="abrirDialogoShare(documento)">
                             <mat-icon>share</mat-icon>
-                          </button>
+                        </button>
                     </div>
-                    
+
                 </mat-list>
             </mat-card-content>
         </mat-card>
-    </mat-grid-tile>
-</mat-grid-list>
+  
+
 

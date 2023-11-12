@@ -24,6 +24,12 @@ export class GlobalsService {
     return JSON.parse(user) as User;
   }
 
+  getTipoUser():string {
+    const tipo =
+      localStorage.getItem('tipoUser')
+    return tipo as string;
+  }
+
   addCarpetaActual(tmpCarpeta: Carpeta) {
     localStorage.setItem('tmpCarpeta', JSON.stringify({ tmpCarpeta }));
   }

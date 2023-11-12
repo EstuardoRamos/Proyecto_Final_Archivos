@@ -10,12 +10,13 @@ import { TreeFlatOverviewExample } from './tree-prueba/TreeFlatOverviewExample '
 import { ListadoCompartidosComponent } from './compartido/listado-compartidos/listado-compartidos.component';
 import { VisorComponent } from './compartido/visor/visor.component';
 import { RegistroComponent } from './autentication/registro/registro.component';
+import { PapeleraComponent } from './papalera/papelera/papelera.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
   { path: 'tree', component: TreeFlatOverviewExample },
-  { path: 'regis', component: RegistroComponent },
+  
   {
     path: 'empleado',
         component: BarraEmpleadoComponent,
@@ -23,7 +24,6 @@ const routes: Routes = [
           { path: '', component: MiCarpetaComponent },
           { path: 'edit', component: EditorComponent },
           { path: 'mi-carpeta', component: MiCarpetaComponent },
-          { path: 'login', component: LoginComponent },
           { path: 'compartidos', component: ListadoCompartidosComponent},
           { path: 'visor', component: VisorComponent},
         ],
@@ -32,9 +32,13 @@ const routes: Routes = [
     path: 'admin',
         component: PrincipalComponent,
         children: [
-          { path: '', component: PrincipalComponent },
+          { path: '', component: MiCarpetaComponent },
           { path: 'edit', component: EditorComponent },
           { path: 'mi-carpeta', component: MiCarpetaComponent },
+          { path: 'compartidos', component: ListadoCompartidosComponent},
+          { path: 'visor', component: VisorComponent},
+          { path: 'regis', component: RegistroComponent },
+          { path: 'papelera', component: PapeleraComponent },
         ],
   },
   { path: '**', component: LoginComponent },

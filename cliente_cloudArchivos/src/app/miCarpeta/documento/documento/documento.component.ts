@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { DocumentoService } from '../../services/documents.servise';
 import { DialogoCompartirComponent } from '../../dialogo/dialogo-compartir/dialogo-compartir.component';
 import { MatDialog } from '@angular/material/dialog';
+import { GlobalsService } from 'src/app/globals/globals.service';
 
 
 
@@ -22,13 +23,15 @@ export class DocumentoComponent {
   constructor(
     private router: Router,
     private documentoService: DocumentoService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private globalService: GlobalsService
     ) {}
 
   onDoubleClick(document: Documento){
     console.log("Documento a editar")
     console.log(document.nombre)
-    this.router.navigate(['/empleado/edit',{ document: JSON.stringify(document), edit:true }]);
+    const ruta: string=this.globalService.getTipoUser()+'/edit'
+    this.router.navigate([ruta,{ document: JSON.stringify(document), edit:true }]);
 
   }
 
@@ -74,7 +77,8 @@ export class DocumentoComponent {
       });
   
       dialogo.afterClosed().subscribe(art => {
-        this.router.navigate(['/empleado']);
+        const ruta: string=this.globalService.getTipoUser()
+        this.router.navigate([ruta]);
         //location.reload();
       });
     }
