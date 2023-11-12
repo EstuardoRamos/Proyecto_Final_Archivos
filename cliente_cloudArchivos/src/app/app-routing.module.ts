@@ -11,6 +11,7 @@ import { ListadoCompartidosComponent } from './compartido/listado-compartidos/li
 import { VisorComponent } from './compartido/visor/visor.component';
 import { RegistroComponent } from './autentication/registro/registro.component';
 import { PapeleraComponent } from './papalera/papelera/papelera.component';
+import { CambioPasswordComponent } from './autentication/cambio-password/cambio-password.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -26,6 +27,7 @@ const routes: Routes = [
           { path: 'mi-carpeta', component: MiCarpetaComponent },
           { path: 'compartidos', component: ListadoCompartidosComponent},
           { path: 'visor', component: VisorComponent},
+          { path: 'password', component: CambioPasswordComponent},
         ],
   },
   {
@@ -39,6 +41,7 @@ const routes: Routes = [
           { path: 'visor', component: VisorComponent},
           { path: 'regis', component: RegistroComponent },
           { path: 'papelera', component: PapeleraComponent },
+          { path: 'password', component: CambioPasswordComponent},
         ],
   },
   { path: '**', component: LoginComponent },

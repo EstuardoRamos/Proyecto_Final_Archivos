@@ -25,4 +25,9 @@ export class AuthService {
   listarUsers(){
     return this.http.get<User[]>(`${this.baseUrl}/api/listar-users/`);
   }
+
+  updatePassword(username: string, user: User){
+    return this.http.put<User[]>(`${this.baseUrl}/api/update-password/${username}`, user);
+
+  }
 }

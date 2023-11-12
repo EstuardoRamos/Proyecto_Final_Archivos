@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './autentication/login/login.component';
+//import { LoginComponent } from './autentication/login/login.component';
 import { EditorComponent } from './editor_de_texto/editor/editor.component';
 
 import { FormsModule } from '@angular/forms';
@@ -50,9 +50,13 @@ import { ListadoUsersComponent } from './compartido/listado-users/listado-users.
 import { VisorComponent } from './compartido/visor/visor.component';
 import { DialogoCompartirComponent } from './miCarpeta/dialogo/dialogo-compartir/dialogo-compartir.component';
 import { PapeleraComponent } from './papalera/papelera/papelera.component';
+import { CommonModule } from '@angular/common';
+import { LoginComponent } from './autentication/login/login.component';
+import { CambioPasswordComponent } from './autentication/cambio-password/cambio-password.component';
 
 @NgModule({
   declarations: [
+      
     AppComponent,
     LoginComponent,
     EditorComponent,
@@ -71,9 +75,12 @@ import { PapeleraComponent } from './papalera/papelera/papelera.component';
     ListadoUsersComponent,
     VisorComponent,
     DialogoCompartirComponent,
-    PapeleraComponent
+    PapeleraComponent,
+    CambioPasswordComponent,
+  
   ],
   imports: [
+    CommonModule,
     FormsModule,
     NgxEditorModule,
 
