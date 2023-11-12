@@ -24,7 +24,8 @@ export class CambioPasswordComponent {
   }
 
   cambiar(){
-    if (this.nuevaPassword === this.confirmarNuevaPassword){
+    if (this.nuevaPassword === this.nuevaPassword){
+      this.globalService.getUser().password=this.nuevaPassword;
       this.authService.updatePassword(this.user, this.globalService.getUser())
       .subscribe((data) =>{
           //alert("Contraseña actualizada correctamente");
@@ -34,6 +35,8 @@ export class CambioPasswordComponent {
             //alert('Error al actualizar la contraseña');
             console.error('Error al cambiar la contraseña', err);
         });
+    } else {
+      Swal.fire('Error', 'Las contraseñas no coinciden', 'error');
     }
   
   }
