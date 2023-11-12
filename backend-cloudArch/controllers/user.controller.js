@@ -100,6 +100,38 @@ const actualizarUsuario = async (req, res) => {
   }
 };
 
+const actualizarPassword = async (req, res) => {
+  const username = req.params.username;  
+  const updateData = req.body;
+
+  try {
+    const user = await User.findOneAndUpdate(
+      {username}, // Debes especificar el campo _id
+      updateData,
+      { new: true }
+    );
+
+    if (!user) {
+      return res.status(404).json({
+        status: 'error',
+        message: 'Documento no encontrado',
+      });
+    }
+
+    return res.status(200).json({
+      status: 'success',
+      message: 'User actualizado correctamente',
+      user,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      status: 'error',
+      message: 'Error en la conexión',
+    });
+  }
+};
+
 const listarUsers = async (req, res) => {
   
   const user = await User.find({});
@@ -117,5 +149,6 @@ module.exports = {
   crearUsuario,
   login,
   actualizarUsuario,
-  listarUsers
+  listarUsers,
+  actualizarPassword
 };
